@@ -1,13 +1,14 @@
 package com.codetest.service
 
 import com.codetest.error.NoPriceProductError
-import com.codetest.model.{BasePrice, CartPrice, CartProduct}
+import com.codetest.model.{BasePrice, CartPrice, CartProduct, ProductPriceMatchResult}
 import com.codetest.util.util.ErrorOr
 import infrastructure.BaseTestSuite
 import infrastructure.builder._
 
 class CartPriceGeneratorTest extends BaseTestSuite {
-  val dummyMatcher: (CartProduct, BasePrice) => Boolean = (t, r) => t.`product-type`.equals(r.`product-type`)
+  val dummyMatcher: (CartProduct, BasePrice) => ProductPriceMatchResult = (t, r) =>
+    ProductPriceMatchResult(isMatched = t.`product-type`.equals(r.`product-type`), None)
   val dummyCalculator: (Long, Double, Long) => Long = (_, _, _)  => 100
 
   val table = Table(
