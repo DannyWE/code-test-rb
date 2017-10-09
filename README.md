@@ -19,6 +19,9 @@ $./sbt clean compile
 ```bash
 $java -jar ./artifact/code-test-cart-price-assembly-0.1.jar ${cart json path} ${price json path}
 
+```
+---
+
 ## :bear: Testing
 ```bash
 $./sbt test
